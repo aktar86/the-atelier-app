@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/NavBar/Navbar";
+import NextThemeProvider from "../components/NextThemeProvider/NextThemeProvider";
 
 // font
 const notoFont = Noto_Serif({
@@ -23,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" className=" h-full antialiased">
       <body className={`${notoFont.className} min-h-full flex flex-col`}>
-        <Navbar></Navbar>
-        <main className="px-2"> {children}</main>
+        <NextThemeProvider>
+          <Navbar></Navbar>
+          <main className="px-2"> {children}</main>
+        </NextThemeProvider>
       </body>
     </html>
   );

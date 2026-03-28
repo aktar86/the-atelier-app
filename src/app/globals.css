@@ -1,37 +1,41 @@
 @import "tailwindcss";
 
-/* ১. রুট ভেরিয়েবলগুলো আলাদা রাখুন */
+/* ১. গ্লোবাল ভেরিয়েবল এবং কালার প্যালেট */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 
-  /* ফন্ট ভেরিয়েবল (Layout থেকে আসা) */
-  --font-noto-serif: "Noto Serif", serif;
+  /* সরাসরি ভেরিয়েবল ডিফাইন করুন যা @theme এ ব্যবহার হবে */
+  --primary: #2d463e;
+  --secondary: #4a4a48;
 }
 
-/* ২. থিম কনফিগারেশন (v4 এ সরাসরি ভ্যালু দেওয়া সবচেয়ে ভালো) */
-@theme {
-  /* সরাসরি হেক্স কোড দিন যাতে ইন্টেলিসেন্স কালার প্রিভিউ দেখাতে পারে */
-  --color-primary: #2d463e;
-  --color-secondary: #4a4a48;
+/* ২. ডার্ক মোড ওভাররাইড (next-themes এর জন্য [data-theme='dark'] ব্যবহার করা বেস্ট) */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  /* প্রয়োজনে ডার্ক মোডে প্রাইমারি কালার একটু লাইট করতে পারেন */
+  /* --primary: #3a5a50; */
+}
 
+/* ৩. Tailwind v4 থিম কনফিগারেশন */
+@theme {
+  /* কালার ম্যাপিং */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --font-serif: var(--font-noto-serif);
+  /* ফন্ট ম্যাপিং (Layout.tsx এ Noto Serif সেট করা থাকলে এটি কাজ করবে) */
+  --font-serif: var(--font-noto-serif), ui-serif, Georgia, serif;
 }
 
-/* ৩. ডার্ক মোড সাপোর্ট */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ৪. বেস স্টাইল */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* font-family এখানে দেওয়ার দরকার নেই যদি layout.tsx এ body-তে className সেট করেন */
+    @apply antialiased;
   }
-}
-
-/* ৪. গ্লোবাল স্টাইল */
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-serif), Arial, Helvetica, sans-serif;
 }

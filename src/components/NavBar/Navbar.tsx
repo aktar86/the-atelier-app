@@ -3,6 +3,7 @@ import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Logo from "../UI/Logo";
 import { FaRegUser } from "react-icons/fa";
+import ThemeToggle from "../NextThemeProvider/ThemeToggle";
 
 const Navbar = () => {
   const links = (
@@ -24,23 +25,33 @@ const Navbar = () => {
       </li>
     </>
   );
+
   return (
-    <header className="py-6 px-2 bg-white text-secondary ">
-      <div className="flex justify-between items-center ">
+    /* bg-background এবং text-foreground ব্যবহার করা হয়েছে যা থিম অনুযায়ী চেঞ্জ হবে */
+    <header className="py-6 px-4 bg-background text-foreground transition-colors duration-300 shadow-sm">
+      <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* logo */}
-        <Logo></Logo>
+        <div className="flex-shrink-0">
+          <Logo />
+        </div>
 
         {/* navlink */}
-        <nav>
-          <ul className="flex justify-center items-center space-x-2">
+        <nav className="hidden md:block">
+          <ul className="flex justify-center items-center space-x-6">
             {links}
           </ul>
         </nav>
 
-        {/* end part  */}
-        <Link href={"/login"} className="text-2xl">
-          <FaRegUser />
-        </Link>
+        {/* end part */}
+        <div className="flex justify-end items-center space-x-4">
+          <ThemeToggle />
+          <Link
+            href="/login"
+            className="text-2xl hover:text-primary transition-colors"
+          >
+            <FaRegUser />
+          </Link>
+        </div>
       </div>
     </header>
   );

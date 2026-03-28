@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* ১. রুট ভেরিয়েবলগুলো আলাদা রাখুন */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* ফন্ট ভেরিয়েবল (Layout থেকে আসা) */
+  --font-noto-serif: "Noto Serif", serif;
+}
+
+/* ২. থিম কনফিগারেশন (v4 এ সরাসরি ভ্যালু দেওয়া সবচেয়ে ভালো) */
+@theme {
+  /* সরাসরি হেক্স কোড দিন যাতে ইন্টেলিসেন্স কালার প্রিভিউ দেখাতে পারে */
+  --color-primary: #2d463e;
+  --color-secondary: #4a4a48;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-serif: var(--font-noto-serif);
+}
+
+/* ৩. ডার্ক মোড সাপোর্ট */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ৪. গ্লোবাল স্টাইল */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-serif), Arial, Helvetica, sans-serif;
+}

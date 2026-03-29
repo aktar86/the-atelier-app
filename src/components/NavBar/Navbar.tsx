@@ -28,8 +28,8 @@ const Navbar = () => {
 
   return (
     /* bg-background এবং text-foreground ব্যবহার করা হয়েছে যা থিম অনুযায়ী চেঞ্জ হবে */
-    <header className="py-6 px-4 bg-background text-foreground transition-colors duration-300 shadow-sm">
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
+    <header className="py-6 px-2 bg-background text-foreground transition-colors duration-300 shadow-sm">
+      <div className="flex justify-between items-center ">
         {/* logo */}
         <div className="flex-shrink-0">
           <Logo />

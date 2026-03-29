@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ১. গ্লোবাল ভেরিয়েবল এবং কালার প্যালেট */
 :root {
   --background: #ffffff;
@@ -11,7 +13,7 @@
 }
 
 /* ২. ডার্ক মোড ওভাররাইড (next-themes এর জন্য [data-theme='dark'] ব্যবহার করা বেস্ট) */
-[data-theme="dark"] {
+.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
   /* প্রয়োজনে ডার্ক মোডে প্রাইমারি কালার একটু লাইট করতে পারেন */

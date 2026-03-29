@@ -7,7 +7,7 @@ interface Props {
 const NextThemeProvider = ({ children }: Props) => {
   return (
     <ThemeProvider
-      attribute="data-theme"
+      attribute="class"
       defaultTheme="light"
       enableSystem={true}
     >

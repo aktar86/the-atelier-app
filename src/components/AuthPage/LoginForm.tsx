@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
+import { signIn } from "next-auth/react";
 
 type FormData = {
   email: string;
@@ -16,18 +17,28 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const handleLogin = (data: FormData) => {
-    console.log("Form Data:", data);
+  const handleLogin = async (data: FormData) => {
+    console.log(data.email);
+    const result = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
     alert(12);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950">
       <div className="w-full max-w-md bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6 dark:text-white">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 dark:text-white">
+          Login
+        </h2>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(handleLogin)} className="space-y-4 dark:text-white">
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          className="space-y-4 dark:text-white"
+        >
           {/* Email */}
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>

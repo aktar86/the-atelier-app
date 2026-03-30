@@ -6,11 +6,7 @@ interface Props {
 }
 const NextThemeProvider = ({ children }: Props) => {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={true}
-    >
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={true}>
       {children}
     </ThemeProvider>
   );

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 101,
+    "productName": "ওয়্যারলেস হেডফোন",
+    "category": "Electronics",
+    "price": 2500,
+    "currency": "BDT",
+    "inStock": true,
+    "rating": 4.5,
+    "description": "উচ্চ মানের সাউন্ড এবং দীর্ঘস্থায়ী ব্যাটারি লাইফসহ ব্লুটুথ হেডফোন।"
+  },
+  {
+    "id": 102,
+    "productName": "স্মার্ট ওয়াচ",
+    "category": "Wearables",
+    "price": 3200,
+    "currency": "BDT",
+    "inStock": true,
+    "rating": 4.2,
+    "description": "হার্ট রেট মনিটর এবং জিপিএস সুবিধাসহ আধুনিক স্মার্ট ওয়াচ।"
+  },
+  {
+    "id": 103,
+    "productName": "গেমিং মাউস",
+    "category": "Accessories",
+    "price": 1200,
+    "currency": "BDT",
+    "inStock": false,
+    "rating": 4.8,
+    "description": "অ্যাডজাস্টেবল DPI এবং RGB লাইটিং সমৃদ্ধ গেমিং মাউস।"
+  },
+  {
+    "id": 104,
+    "productName": "পোর্টেবল পাওয়ার ব্যাংক",
+    "category": "Accessories",
+    "price": 1800,
+    "currency": "BDT",
+    "inStock": true,
+    "rating": 4.0,
+    "description": "১০,০০০ mAh ক্ষমতা সম্পন্ন দ্রুত চার্জিং পাওয়ার ব্যাংক।"
+  },
+  {
+    "id": 105,
+    "productName": "মেকানিক্যাল কীবোর্ড",
+    "category": "Accessories",
+    "price": 4500,
+    "currency": "BDT",
+    "inStock": true,
+    "rating": 4.7,
+    "description": "টাইপিংয়ের দারুণ অভিজ্ঞতার জন্য ব্লু-সুইচ মেকানিক্যাল কীবোর্ড।"
+  }
+]

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
+import { postUser } from "@/src/app/action/server/auth";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   name: string;
@@ -11,7 +13,13 @@ type FormData = {
   confirmPassword: string;
 };
 
+interface Result {
+  insertedId: string;
+  acknowledged: boolean;
+}
+
 const RegisterForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -19,15 +27,22 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log("Register Data:", data);
-  };
 
-  const handleGoogleSignup = () => {
-    console.log("Google signup clicked");
-    // later: signIn("google")
-  };
+    try {
+      const result = await postUser(data);
 
+      if (result && result.acknowledged) {
+        alert("Registration successful!");
+        router.push("/login");
+      } else {
+        alert("Registration failed. Please check your details.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   const password = watch("password");
 
   return (

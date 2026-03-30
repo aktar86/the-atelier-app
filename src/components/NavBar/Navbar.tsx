@@ -4,6 +4,7 @@ import Link from "next/link";
 import Logo from "../UI/Logo";
 import { FaRegUser } from "react-icons/fa";
 import ThemeToggle from "../NextThemeProvider/ThemeToggle";
+import AuthButtons from "../AuthPage/AuthButtons";
 
 const Navbar = () => {
   const links = (
@@ -45,12 +46,7 @@ const Navbar = () => {
         {/* end part */}
         <div className="flex justify-end items-center space-x-4">
           <ThemeToggle />
-          <Link
-            href="/login"
-            className="text-2xl hover:text-primary transition-colors"
-          >
-            <FaRegUser />
-          </Link>
+          <AuthButtons></AuthButtons>
         </div>
       </div>
     </header>

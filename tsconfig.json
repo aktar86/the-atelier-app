@@ -30,6 +30,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "src/app/api/auth/[...nextauth]/route.js"
-  ],
+, "src/lib/dbConnect.js"  ],
   "exclude": ["node_modules"]
 }

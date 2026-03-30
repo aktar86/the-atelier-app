@@ -12,12 +12,11 @@ export const authOptions = {
       },
 
       async authorize(credentials, req) {
-        if (!credentials) {
-          return null;
-        }
-        const user = await loginUser(credentials as any);
+        console.log(credentials);
 
-        return null;
+        const user = await loginUser(credentials);
+
+        return user;
       },
     }),
   ],

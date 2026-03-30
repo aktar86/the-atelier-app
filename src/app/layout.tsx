@@ -3,6 +3,7 @@ import { Noto_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/NavBar/Navbar";
 import NextThemeProvider from "../components/NextThemeProvider/NextThemeProvider";
+import NextAuthProvider from "../components/AuthPage/NextAuthProvider";
 
 // font
 const notoFont = Noto_Serif({
@@ -22,13 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className=" h-full antialiased" suppressHydrationWarning>
-      <body className={`${notoFont.className} min-h-full flex flex-col`}>
-        <NextThemeProvider>
-          <Navbar></Navbar>
-          <main className="px-2"> {children}</main>
-        </NextThemeProvider>
-      </body>
-    </html>
+    <NextAuthProvider>
+      <html lang="en" suppressHydrationWarning className=" h-full antialiased">
+        <body className={`${notoFont.className} min-h-full flex flex-col`}>
+          <NextThemeProvider>
+            <Navbar></Navbar>
+            <main className="px-2"> {children}</main>
+          </NextThemeProvider>
+        </body>
+      </html>
+    </NextAuthProvider>
   );
 }

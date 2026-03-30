@@ -4,7 +4,8 @@ import Link from "next/link";
 import { FaRegUser } from "react-icons/fa";
 
 const AuthButtons = () => {
-  const { status } = useSession();
+  const session = useSession();
+  console.log(session.status);
   return (
     <Link
       href="/login"

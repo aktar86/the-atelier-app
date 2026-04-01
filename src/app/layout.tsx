@@ -28,6 +28,7 @@ export default function RootLayout({
         <body className={`${notoFont.className} min-h-full flex flex-col`}>
           <NextThemeProvider>
             <Navbar></Navbar>
+
             <main className="px-2"> {children}</main>
           </NextThemeProvider>
         </body>

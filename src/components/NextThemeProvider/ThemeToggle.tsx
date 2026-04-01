@@ -1,12 +1,12 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import { useThemeContext } from "./NextThemeProvider";
 
 const ThemeToggle = () => {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, toggleTheme } = useThemeContext();
   const [mounted, setMounted] = useState(false);
 
   // Hydration error এড়ানোর জন্য এই useEffect দরকার
@@ -18,10 +18,11 @@ const ThemeToggle = () => {
 
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="px-4 py-2 text-2xl rounded-md   hover:opacity-90 transition-all"
+      onClick={toggleTheme}
+      className="px-4 py-2 text-2xl rounded-md hover:opacity-90 transition-all"
+      aria-label="Toggle theme"
     >
-      {resolvedTheme === "dark" ? <CiLight /> : <MdOutlineDarkMode />}
+      {theme === "dark" ? <CiLight /> : <MdOutlineDarkMode />}
     </button>
   );
 };

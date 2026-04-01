@@ -6,29 +6,34 @@ import SocialLogin from "./SocialLogin";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation"; // রাউটিং এর জন্য
 
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
+
 const LoginPage = () => {
   const router = useRouter();
 
-  // ১. useForm-এ জেনেরিক টাইপ হিসেবে 'any' বা নির্দিষ্ট ইন্টারফেস দিন
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<LoginFormValues>();
 
-  const handleLogin = async (data: any) => {
+  const handleLogin = async (data: LoginFormValues) => {
     // ২. console.log দিয়ে চেক করুন ডেটা আসছে কিনা
     console.log("Login Attempt:", data.email);
 
     const result = await signIn("credentials", {
       email: data.email,
       password: data.password,
-      redirect: false, // আমরা ম্যানুয়ালি হ্যান্ডেল করবো
+      redirect: false,
     });
+    console.log(result);
 
     // ৩. রেজাল্ট চেক এবং ইউজার ফিডব্যাক
     if (result?.error) {
-      // যদি ভুল পাসওয়ার্ড বা ইমেইল হয়, তবে NextAuth 'CredentialsSignin' এরর দেয়
+      // যদি ভুল পাসওয়ার্ড বা ইমেইল হয়, তবে NextAuth 'CredentialsSignin' এরর দেয়
       alert("Login Failed: Invalid email or password");
     } else if (result?.ok) {
       alert("Login Successful!");

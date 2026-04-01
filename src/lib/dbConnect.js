@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+import { MongoClient, ServerApiVersion } from "mongodb";
 const uri = process.env.MONGODB_URI;
 const dbname = process.env.DB_NAME;
 
@@ -15,5 +15,5 @@ const client = new MongoClient(uri, {
 });
 
 export const dbConnect = async (collectionName) => {
-  return await client.db(dbname).collection(collectionName);
+  return client.db(dbname).collection(collectionName);
 };

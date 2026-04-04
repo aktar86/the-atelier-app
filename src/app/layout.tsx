@@ -6,8 +6,7 @@ import NextThemeProvider from "../components/NextThemeProvider/NextThemeProvider
 import NextAuthProvider from "../components/AuthPage/NextAuthProvider";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 // font
 const notoFont = Noto_Serif({
@@ -28,7 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <NextAuthProvider>
-      <html lang="en" suppressHydrationWarning className={cn(" h-full antialiased", "font-sans", inter.variable)}>
+      <html
+        lang="en"
+        suppressHydrationWarning
+        className={cn(" h-full antialiased", "font-sans", inter.variable)}
+      >
         <body className={`${notoFont.className} min-h-full flex flex-col`}>
           <NextThemeProvider>
             <Navbar></Navbar>

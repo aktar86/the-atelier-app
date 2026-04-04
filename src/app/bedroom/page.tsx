@@ -1,7 +1,11 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
 
 const BedroomPage = () => {
-  return <div>bedroom page</div>;
+  return (
+    <div>
+      <Button variant="outline">Hello, World!</Button>
+    </div>
+  );
 };
 
 export default BedroomPage;

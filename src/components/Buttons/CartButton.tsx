@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,14 +28,12 @@ const CartButton = ({
   };
 
   return (
-    <button
-      onClick={handleAddToCart}
-      disabled={isLoading}
-      type="button"
-      className="mt-5 w-full bg-gray-900 text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition-colors duration-200 active:scale-95 transform disabled:opacity-50 disabled:cursor-not-allowed"
-    >
-      {isLoading ? "যোগ করা হচ্ছে..." : "কার্টে যোগ করুন"}
-    </button>
+    <>
+      <Button onClick={handleAddToCart} disabled={isLoading}>
+        {" "}
+        {isLoading ? "যোগ করা হচ্ছে..." : "কার্টে যোগ করুন"}
+      </Button>
+    </>
   );
 };
 

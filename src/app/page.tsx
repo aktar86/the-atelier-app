@@ -11,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import HomeBanner from "../components/Home/Banner";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -21,28 +22,9 @@ export default async function Home() {
         <p>{JSON.stringify(session)}</p>
       </div>
       <ClientSession></ClientSession>
-      <FurnitureData></FurnitureData>
-      <div className="py-20 flex flex-col justify-center items-center">
-        {/* accordion */}
-        <div className="my-10 ">
-          <Accordion type="single" collapsible defaultValue="item-1">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
 
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Is it customizable?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It can be customized to fit your needs.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-        <Button variant="outline">Hello, World!</Button>
-      </div>
+      <HomeBanner></HomeBanner>
+      <FurnitureData></FurnitureData>
     </div>
   );
 }

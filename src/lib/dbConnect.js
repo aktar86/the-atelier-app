@@ -4,6 +4,7 @@ const dbname = process.env.DB_NAME;
 
 export const collection = {
   USERS: "users",
+  CART: "cart",
 };
 
 const client = new MongoClient(uri, {

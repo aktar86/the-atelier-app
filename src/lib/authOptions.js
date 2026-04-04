@@ -50,11 +50,31 @@ export const authOptions = {
     //   return baseUrl;
     // },
     async session({ session, user, token }) {
-      console.log(session);
+      console.log("session:", session);
+      if (token) {
+        session.role = token?.role;
+        session.email = token?.email;
+      }
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
-      console.log(token);
+      // console.log("JWT Token:", token);
+      // console.log("JWT user:", user);
+
+      if (user) {
+        if (account?.provider === "google") {
+          const googleUser = await usersCollection.findOne({
+            email: user.email,
+          });
+          if (googleUser) {
+            token.role = googleUser?.role;
+            token.email = googleUser?.email;
+          }
+        } else {
+          token.role = user?.role;
+          token.email = user?.email;
+        }
+      }
       return token;
     },
   },

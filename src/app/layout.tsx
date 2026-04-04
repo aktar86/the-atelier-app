@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Noto_Serif } from "next/font/google";
+import { Noto_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/NavBar/Navbar";
 import NextThemeProvider from "../components/NextThemeProvider/NextThemeProvider";
 import NextAuthProvider from "../components/AuthPage/NextAuthProvider";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+
 
 // font
 const notoFont = Noto_Serif({
@@ -24,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <NextAuthProvider>
-      <html lang="en" suppressHydrationWarning className=" h-full antialiased">
+      <html lang="en" suppressHydrationWarning className={cn(" h-full antialiased", "font-sans", inter.variable)}>
         <body className={`${notoFont.className} min-h-full flex flex-col`}>
           <NextThemeProvider>
             <Navbar></Navbar>

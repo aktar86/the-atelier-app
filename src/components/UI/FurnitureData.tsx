@@ -43,7 +43,12 @@ const FurnitureData = () => {
               </p>
 
               {/* অ্যাকশন বাটন */}
-              <CartButton></CartButton>
+              <CartButton
+                productId={item.id}
+                productName={item.productName}
+                price={item.price}
+                category={item.category}
+              ></CartButton>
             </div>
           </div>
         ))}

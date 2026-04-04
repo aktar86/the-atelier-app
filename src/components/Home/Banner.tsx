@@ -18,12 +18,17 @@ const HomeBanner = () => {
         <Button variant="default">Explore Collection</Button>
       </div>
       {/* image */}
-      <div className="relative flex-1">
-        <div className="h-full w-full bg-amber-100 z-999 relative">
-          image box
-        </div>
-        <div className="h-full w-full bg-amber-200 z-10 absolute top-5 left-5">
-          box 2
+      <div className=" flex-1 p-10">
+        <div className="relative h-64 border">
+          {/* Parent height নির্দিষ্ট থাকা ভালো */}
+          {/* সামনের বক্স (Image Box) */}
+          <div className="h-full w-full bg-amber-100 z-20 relative">
+            image box
+          </div>
+          {/* পেছনের বক্স (Box 2) */}
+          <div className="h-full w-full bg-amber-200 z-10 absolute top-5 left-5">
+            box 2
+          </div>
         </div>
       </div>
     </div>

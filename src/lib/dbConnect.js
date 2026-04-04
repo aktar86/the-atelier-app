@@ -4,6 +4,7 @@ const dbname = process.env.DB_NAME;
 
 export const collection = {
   USERS: "users",
+  PRODUCTS: "products",
   CART: "cart",
 };
 

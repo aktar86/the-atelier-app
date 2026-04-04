@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Serif, Inter } from "next/font/google";
+import { Noto_Serif, Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/NavBar/Navbar";
 import NextThemeProvider from "../components/NextThemeProvider/NextThemeProvider";
@@ -14,6 +14,10 @@ const notoFont = Noto_Serif({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+export const poppins = Poppins({
+  subsets: ["latin"], // Adding subsets is mandatory in some Next.js versions
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 // meta data for SEO
 export const metadata: Metadata = {
   title: "Create Next App",

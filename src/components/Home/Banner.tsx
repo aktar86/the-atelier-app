@@ -1,32 +1,45 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
+import { poppins } from "@/src/app/layout";
+import Image from "next/image";
+import Link from "next/link";
 
 const HomeBanner = () => {
   return (
     <div className="flex justi-between items-center">
       {/* content */}
-      <div className="flex-1">
-        <p>New Collection 2024</p>
+      <div className="flex-1 space-y-3">
+        <p className={`${poppins.className} font-light`}>New Collection 2024</p>
         <h1 className="font-bold text-6xl">
-          The <br /> Sculptural <br /> Form
+          The Sculptural <br /> Form
         </h1>
-        <p>
+        <p className={`${poppins.className} font-light max-w-125 py-5`}>
           A curated selection of archival pieces redefined for contemporary
           living. Each silhouette is a dialogue between organic material and
           mathematical precision.
         </p>
-        <Button variant="default">Explore Collection</Button>
+
+        <Link
+          href="/"
+          className="px-7 py-3 mt-5 bg-primary dark:text-secondary text-white"
+        >
+          {" "}
+          Explore Collection
+        </Link>
       </div>
       {/* image */}
       <div className=" flex-1 p-10">
-        <div className="relative h-64 border">
-          {/* Parent height নির্দিষ্ট থাকা ভালো */}
+        <div className="relative h-108 border">
           {/* সামনের বক্স (Image Box) */}
-          <div className="h-full w-full bg-amber-100 z-20 relative">
-            image box
+          <div className="h-full w-full overflow-hidden  bg-amber-100 z-20 relative">
+            <Image
+              src="/banner.jpg"
+              alt="Banner"
+              fill
+              className="object-cover"
+            />
           </div>
           {/* পেছনের বক্স (Box 2) */}
-          <div className="h-full w-full bg-amber-200 z-10 absolute top-5 left-5">
+          <div className="h-full w-full bg-amber-200 z-10 absolute top-10 left-10">
             box 2
           </div>
         </div>

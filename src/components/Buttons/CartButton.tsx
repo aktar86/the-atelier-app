@@ -1,39 +1,51 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
+import { FiShoppingCart, FiLoader } from "react-icons/fi";
 
 interface CartButtonProps {
-  productId: number;
-  productName: string;
-  price: number;
-  category: string;
+  productId: string;
 }
 
-const CartButton = ({
-  productId,
-  productName,
-  price,
-  category,
-}: CartButtonProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const { status } = useSession();
-  const [isLoading, setIsLoading] = useState(false);
+const CartButton = ({ productId }: CartButtonProps) => {
+  const [loading, setLoading] = useState(false);
 
   const handleAddToCart = async () => {
-    alert("এই ফিচারটি এখনও ডেভেলপমেন্ট পর্যায়ে আছে।");
+    setLoading(true);
+
+    try {
+      // এখানে আপনার কার্ট এপিআই কল হবে
+      console.log("Adding to cart, Product ID:", productId);
+
+      // একটি কৃত্রিম বিলম্ব (Simulation)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      alert("Product added to cart successfully!");
+    } catch (error) {
+      console.error("Cart error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <>
-      <Button onClick={handleAddToCart} disabled={isLoading}>
-        {" "}
-        {isLoading ? "যোগ করা হচ্ছে..." : "কার্টে যোগ করুন"}
-      </Button>
-    </>
+    <button
+      onClick={handleAddToCart}
+      disabled={loading}
+      className={`flex items-center justify-center gap-2 px-6 py-3  font-bold transition-all active:scale-95 
+        ${
+          loading
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-primary hover:opacity-90 text-white dark:text-black"
+        }`}
+    >
+      {loading ? (
+        <FiLoader className="animate-spin w-5 h-5" />
+      ) : (
+        <FiShoppingCart className="w-5 h-5" />
+      )}
+      <span>{loading ? "Adding..." : "Add to Cart"}</span>
+    </button>
   );
 };
 

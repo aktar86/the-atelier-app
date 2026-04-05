@@ -40,7 +40,7 @@ const HomeBanner = () => {
           </div>
           {/* পেছনের বক্স (Box 2) */}
           <div className="h-full w-full bg-amber-200 z-10 absolute top-10 left-10">
-            box 2
+            box 2 box 2 is
           </div>
         </div>
       </div>

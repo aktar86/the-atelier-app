@@ -42,7 +42,7 @@ const CollectionPage = async () => {
     <div>
       {/* Your UI */}
       {products.length}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="max-w-480 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.map((product) => (
           <div key={product._id} className="lg:nth-[3n-1]:mt-10  sm:mt-0">
             <ProductCard product={product} />

@@ -29,27 +29,29 @@ const Navbar = () => {
       </li>
     </>
   );
-
+  //
   return (
     /* bg-background এবং text-foreground ব্যবহার করা হয়েছে যা থিম অনুযায়ী চেঞ্জ হবে */
-    <header className="py-6 px-2 bg-background text-foreground transition-colors duration-300 shadow-sm">
-      <div className="flex justify-between items-center ">
-        {/* logo */}
-        <div className="flex-shrink-0">
-          <Logo />
-        </div>
+    <header className=" fixed top-0 left-0 right-0 z-50 py-4  mb-5 bg-background/80 backdrop-blur-md text-foreground transition-colors duration-300 shadow-sm ">
+      <div className=" max-w-7xl  mx-auto px-4 md:px-0">
+        <div className="flex justify-between items-center ">
+          {/* logo */}
+          <div className="shrink-0">
+            <Logo />
+          </div>
 
-        {/* navlink */}
-        <nav className="hidden md:block">
-          <ul className="flex justify-center items-center space-x-6">
-            {links}
-          </ul>
-        </nav>
+          {/* navlink */}
+          <nav className="hidden md:block">
+            <ul className="flex justify-center items-center space-x-6">
+              {links}
+            </ul>
+          </nav>
 
-        {/* end part */}
-        <div className="flex justify-end items-center space-x-4">
-          <ThemeToggle />
-          <AuthButtons></AuthButtons>
+          {/* end part */}
+          <div className="flex justify-end items-center space-x-4">
+            <ThemeToggle />
+            <AuthButtons></AuthButtons>
+          </div>
         </div>
       </div>
     </header>

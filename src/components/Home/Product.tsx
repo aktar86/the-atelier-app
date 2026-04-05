@@ -26,7 +26,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Link href={`/collection/${_id}`}>
       <div className="">
         {/* image box */}
-        <div className="relative h-120 w-full bg-gray-200 overflow-hidden ">
+        <div className="relative h-80 md:h-120 lg:h-150 w-full bg-gray-200 overflow-hidden ">
           <Image
             src={image}
             alt={product_name}

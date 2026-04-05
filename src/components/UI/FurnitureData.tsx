@@ -1,59 +1,53 @@
-import React from "react";
-import Furnitures from "@/src/data/furniture.json";
-import CartButton from "../Buttons/CartButton";
+import { poppins } from "@/src/app/layout";
+import ProductCard from "../Home/Product";
+import Link from "next/link";
 
-const FurnitureData = () => {
+interface Product {
+  _id: string;
+  product_name: string;
+  price: string; // আপনার ডেটাতে '$1,750.00' স্ট্রিং আছে
+  material: string;
+  finish: string;
+  dimensions: string;
+  origin: string;
+  image: string;
+  description: string;
+}
+
+interface FurnitureDataProps {
+  trimProducts: Product[];
+}
+
+const FurnitureData = ({ trimProducts }: FurnitureDataProps) => {
   return (
-    <div className="container mx-auto p-6">
-      {/* মোট পণ্যের সংখ্যা দেখানোর জন্য */}
-      <h2 className="mb-6 text-4xl font-bold text-gray-800 text-center ">
-        মোট ফার্নিচার: {Furnitures.length} টি
-      </h2>
+    <section className="border my-5">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-12 sm:py-20 gap-4">
+        <span>
+          <h2 className="font-semibold text-2xl sm:text-3xl">
+            Masterpiece Editions
+          </h2>
+          <p className={`${poppins.className} font-light`}>
+            Carefully selected highlights from our seasonal curation.
+          </p>
+        </span>
 
-      {/* গ্রিড লেআউট */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {Furnitures.map((item) => (
-          <div
-            key={item.id}
-            className="max-w-sm bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col"
+        <span className="relative">
+          <Link
+            href="/collection"
+            className="text-primary hover:opacity-90 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.5px] after:w-full after:bg-primary after:hover:opacity-90"
           >
-            {/* কন্টেন্ট সেকশন */}
-            <div className="p-5 flex flex-col flex-grow">
-              <p className="text-xs text-blue-600 font-semibold uppercase tracking-widest">
-                {item.category}
-              </p>
-              <h3 className="mt-1 text-lg font-bold text-gray-800 line-clamp-1">
-                {item.productName}
-              </h3>
-
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-xl font-extrabold text-gray-900">
-                  ৳{item.price}
-                </span>
-                <div className="flex items-center text-yellow-500 text-sm">
-                  <span>★</span>
-                  <span className="ml-1 text-gray-600 font-medium">
-                    {item.rating}
-                  </span>
-                </div>
-              </div>
-
-              <p className="mt-3 text-gray-500 text-sm line-clamp-2 flex-grow">
-                {item.description}
-              </p>
-
-              {/* অ্যাকশন বাটন */}
-              <CartButton
-                productId={item.id}
-                productName={item.productName}
-                price={item.price}
-                category={item.category}
-              ></CartButton>
-            </div>
+            View All Pieces
+          </Link>
+        </span>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {trimProducts.map((product) => (
+          <div key={product._id} className="lg:nth-[3n-1]:mt-10 sm:mt-0">
+            <ProductCard product={product}></ProductCard>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

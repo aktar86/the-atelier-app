@@ -40,12 +40,14 @@ const FurnitureData = ({ trimProducts }: FurnitureDataProps) => {
           </Link>
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {trimProducts.map((product) => (
-          <div key={product._id} className="lg:nth-[3n-1]:mt-10 sm:mt-0">
-            <ProductCard product={product}></ProductCard>
-          </div>
-        ))}
+      <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30">
+          {trimProducts.map((product) => (
+            <div key={product._id} className="lg:nth-[3n-1]:mt-10 sm:mt-0">
+              <ProductCard product={product}></ProductCard>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

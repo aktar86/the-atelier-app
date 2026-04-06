@@ -1,5 +1,4 @@
-// app/collection/page.tsx
-import ProductCard from "@/src/components/Home/Product";
+import CollectionClient from "@/src/components/UI/CollectionClient";
 import { cookies } from "next/headers";
 
 const getProducts = async () => {
@@ -25,30 +24,44 @@ const getProducts = async () => {
 interface Product {
   _id: string;
   product_name: string;
-  price: string; // আপনার ডেটাতে '$1,750.00' স্ট্রিং আছে
+  price: string;
   material: string;
   finish: string;
   dimensions: string;
   origin: string;
   image: string;
   description: string;
+  category: string;
+  materials: string;
 }
 
 const CollectionPage = async () => {
   const products: Product[] = await getProducts();
-  console.log(products);
 
   return (
     <div>
-      {/* Your UI */}
-      {products.length}
-      <div className="max-w-480 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {products.map((product) => (
-          <div key={product._id} className="lg:nth-[3n-1]:mt-10  sm:mt-0">
-            <ProductCard product={product} />
-          </div>
-        ))}
+      <div className="flex flex-col-reverse  md:flex-row justify-between py-10 ">
+        {/* left */}
+        <div className="space-y-3 max-w-2xl border">
+          {" "}
+          <small>The Living Collection</small>
+          <h1 className="text-primary text-5xl  font-semibold">
+            Curated Spaces for Architectural Living.
+          </h1>
+          <p>
+            A selection of hand-crafted pieces where form meets heritage.
+            Explore our signature silhouettes designed for timeless modern
+            interiors.
+          </p>
+        </div>
+        {/* right  */}
+        <div className="mb-10 md:mb-0">
+          <small>Displaying</small>
+          <small>{products.length} Masterpieces</small>
+        </div>
       </div>
+
+      <CollectionClient products={products}></CollectionClient>
     </div>
   );
 };

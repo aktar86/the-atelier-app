@@ -1,0 +1,110 @@
+"use client";
+import { useState } from "react";
+import ProductCard from "@/src/components/Home/Product";
+
+interface Product {
+  _id: string;
+  product_name: string;
+  price: string; // আপনার ডেটাতে '$1,750.00' স্ট্রিং আছে
+  material: string;
+  finish: string;
+  dimensions: string;
+  origin: string;
+  image: string;
+  description: string;
+  category: string;
+  materials: string;
+}
+
+interface CollectionClientProps {
+  products: Product[];
+}
+
+const CollectionClient = ({ products }: CollectionClientProps) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  // ১. ক্যাটাগরি কাউন্টের জন্য টাইপ (Record<string, number>)
+  const categoryCounts = products.reduce<Record<string, number>>(
+    (acc, product) => {
+      const cat = product.category;
+      acc[cat] = (acc[cat] || 0) + 1;
+      return acc;
+    },
+    {},
+  );
+
+  const categories: string[] = ["All", ...Object.keys(categoryCounts)];
+
+  // ২. ইউনিক মেটেরিয়াল বের করা
+  const allMaterials: string[] = Array.from(
+    new Set(products.flatMap((p) => p.materials || [])),
+  );
+
+  // ৩. ফিল্টারিং লজিক
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((p) => p.category === selectedCategory);
+
+  return (
+    <div className="flex flex-col md:flex-row gap-8">
+      {/* Aside Section */}
+      <aside className="w-full md:w-64 space-y-10">
+        <div>
+          <h3 className="text-xl font-serif mb-6 border-b pb-2">Categories</h3>
+          <ul className="space-y-4">
+            {categories.map((cat, i) => (
+              <li
+                key={i}
+                onClick={() => setSelectedCategory(cat)}
+                className={`flex justify-between items-center cursor-pointer transition-all ${
+                  selectedCategory === cat
+                    ? "font-bold text-black border-l-4 border-primary pl-2"
+                    : "text-gray-500 hover:text-black"
+                }`}
+              >
+                <span className="capitalize">{cat}</span>
+                <span className="text-xs text-gray-400">
+                  {cat === "All"
+                    ? products.length.toString().padStart(2, "0")
+                    : categoryCounts[cat].toString().padStart(2, "0")}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Materials Section */}
+        <div>
+          <h3 className="text-xl font-serif mb-4 border-b pb-2">Materials</h3>
+          <div className="flex flex-wrap gap-2">
+            {allMaterials.map((mat) => (
+              <button
+                key={mat}
+                className="px-3 py-1 bg-gray-100 text-[10px] tracking-widest uppercase hover:bg-black hover:text-white transition-colors"
+              >
+                {mat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </aside>
+
+      {/* Product List */}
+      <section className="flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredProducts.map((product, index) => (
+            <div
+              key={product._id}
+              className={index % 3 === 1 ? "lg:mt-10" : ""}
+            >
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default CollectionClient;

@@ -38,10 +38,10 @@ export default function RootLayout({
       >
         <body className={`${notoFont.className} min-h-full flex flex-col`}>
           <NextThemeProvider>
-            <Navbar></Navbar>
-            <main className="w-full max-w-7xl mx-auto px-4 md:px-0  ">
-              {children}
-            </main>
+            <div className="w-full max-w-480 mx-auto px-20">
+              <Navbar></Navbar>
+              <main className="w-full  px-4 md:px-0 mt-30 ">{children}</main>
+            </div>
           </NextThemeProvider>
         </body>
       </html>

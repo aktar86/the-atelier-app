@@ -33,7 +33,7 @@ const Navbar = () => {
   return (
     /* bg-background এবং text-foreground ব্যবহার করা হয়েছে যা থিম অনুযায়ী চেঞ্জ হবে */
     <header className=" fixed top-0 left-0 right-0 z-50 py-4  mb-5 bg-background/80 backdrop-blur-md text-foreground transition-colors duration-300 shadow-sm ">
-      <div className=" max-w-7xl  mx-auto px-4 md:px-0">
+      <div className=" w-full max-w-480 mx-auto lg:px-20  px-4 md:px-0">
         <div className="flex justify-between items-center ">
           {/* logo */}
           <div className="shrink-0">

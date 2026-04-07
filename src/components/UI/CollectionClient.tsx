@@ -23,8 +23,8 @@ interface CollectionClientProps {
 const CollectionClient = ({ products }: CollectionClientProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  // ১. ক্যাটাগরি কাউন্টের জন্য টাইপ (Record<string, number>)
-  const categoryCounts = products.reduce<Record<string, number>>(
+  // category count (ei reduce akta obj return korbe etake array banate hobe)
+  const categoryCount = products.reduce<Record<string, number>>(
     (acc, product) => {
       const cat = product.category;
       acc[cat] = (acc[cat] || 0) + 1;
@@ -32,64 +32,55 @@ const CollectionClient = ({ products }: CollectionClientProps) => {
     },
     {},
   );
+  const categories: string[] = ["All", ...Object.keys(categoryCount)];
 
-  const categories: string[] = ["All", ...Object.keys(categoryCounts)];
-
-  // ২. ইউনিক মেটেরিয়াল বের করা
+  // all materials
   const allMaterials: string[] = Array.from(
     new Set(products.flatMap((p) => p.materials || [])),
   );
 
-  // ৩. ফিল্টারিং লজিক
   const filteredProducts =
     selectedCategory === "All"
       ? products
       : products.filter((p) => p.category === selectedCategory);
-
   return (
     <div className="flex flex-col md:flex-row gap-8">
-      {/* Aside Section */}
-      <aside className="w-full md:w-64 space-y-10">
+      <aside className=" w-full md:w-64 space-y-10 ">
         <div>
-          <h3 className="text-xl font-serif mb-6 border-b pb-2">Categories</h3>
+          <h3 className="text-2xl mb-6 border-b pb-2">Categories</h3>
           <ul className="space-y-4">
-            {categories.map((cat, i) => (
+            {categories.map((cat, index) => (
               <li
-                key={i}
+                key={index}
                 onClick={() => setSelectedCategory(cat)}
-                className={`flex justify-between items-center cursor-pointer transition-all ${
-                  selectedCategory === cat
-                    ? "font-bold text-black border-l-4 border-primary pl-2"
-                    : "text-gray-500 hover:text-black"
-                }`}
+                className={`flex justify-between items-center cursor-pointer transition-all ${cat === selectedCategory ? "font-bold text-primary dark:text-white border-l-4 border-primary pl-2" : "text-gray-500 hover:text-primary"}`}
               >
-                <span className="capitalize">{cat}</span>
-                <span className="text-xs text-gray-400">
-                  {cat === "All"
-                    ? products.length.toString().padStart(2, "0")
-                    : categoryCounts[cat].toString().padStart(2, "0")}
+                <span>{cat}</span>
+                <span>
+                  {cat === "All" ? products.length : categoryCount[cat]}
                 </span>
               </li>
             ))}
           </ul>
         </div>
-
-        {/* Materials Section */}
+        {/* material */}
         <div>
-          <h3 className="text-xl font-serif mb-4 border-b pb-2">Materials</h3>
+          <h3 className="text-2xl mb-6 border-b pb-2">Materials</h3>
           <div className="flex flex-wrap gap-2">
-            {allMaterials.map((mat) => (
+            {allMaterials.map((mat, index) => (
               <button
-                key={mat}
-                className="px-3 py-1 bg-gray-100 text-[10px] tracking-widest uppercase hover:bg-black hover:text-white transition-colors"
+                type="button"
+                key={index}
+                className="px-3 py-1 bg-gray-100 text-[13px] tracking-widest uppercase hover:bg-black hover:text-white dark:bg-white dark:text-black transition-colors"
               >
                 {mat}
               </button>
             ))}
           </div>
         </div>
-      </aside>
 
+        {/* all products */}
+      </aside>
       {/* Product List */}
       <section className="flex-1">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

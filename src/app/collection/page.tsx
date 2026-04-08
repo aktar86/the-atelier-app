@@ -56,8 +56,10 @@ const CollectionPage = async () => {
         </div>
         {/* right  */}
         <div className="mb-10 md:mb-0">
-          <small>Displaying</small>
-          <small>{products.length} Masterpieces</small>
+          <small className="mr-10">Displaying</small>{" "}
+          <small className="font-light text-lg">
+            {products.length} Masterpieces
+          </small>
         </div>
       </div>
 

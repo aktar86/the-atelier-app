@@ -1,5 +1,26 @@
 import CollectionClient from "@/src/components/UI/CollectionClient";
+import { poppins } from "@/src/lib/fonts";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "The Living Collection | Curated Furniture",
+  description:
+    "Explore our signature collection of hand-crafted furniture pieces. From architectural silhouettes to timeless modern interiors, discover masterpieces designed for your home.",
+  openGraph: {
+    title: "Curated Spaces for Architectural Living | The Atelier",
+    description:
+      "A selection of hand-crafted pieces where form meets heritage.",
+    images: [
+      {
+        url: "/collection-banner.jpg", // public ফোল্ডারে একটি ভালো ব্যানার ইমেজ রাখুন
+        width: 1200,
+        height: 630,
+        alt: "The Atelier Living Collection",
+      },
+    ],
+  },
+};
 
 const getProducts = async () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
@@ -40,12 +61,11 @@ const CollectionPage = async () => {
 
   return (
     <div>
-      <div className="flex flex-col-reverse  md:flex-row justify-between py-10 ">
+      <div className="flex flex-col-reverse  lg:flex-row justify-between py-10  ">
         {/* left */}
-        <div className="space-y-3 max-w-2xl border">
-          {" "}
+        <div className="space-y-5 max-w-2xl ">
           <small>The Living Collection</small>
-          <h1 className="text-primary text-5xl  font-semibold">
+          <h1 className="text-primary text-3xl md:text-4xl lg:text-6xl  font-semibold">
             Curated Spaces for Architectural Living.
           </h1>
           <p>
@@ -55,9 +75,9 @@ const CollectionPage = async () => {
           </p>
         </div>
         {/* right  */}
-        <div className="mb-10 md:mb-0">
-          <small className="mr-10">Displaying</small>{" "}
-          <small className="font-light text-lg">
+        <div className=" pb-10 md:mb-0">
+          <small className={`${poppins.className} mr-10`}>Displaying</small>{" "}
+          <small className={`${poppins.className} font-semibold`}>
             {products.length} Masterpieces
           </small>
         </div>

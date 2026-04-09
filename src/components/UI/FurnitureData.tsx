@@ -20,7 +20,7 @@ interface FurnitureDataProps {
 
 const FurnitureData = ({ trimProducts }: FurnitureDataProps) => {
   return (
-    <section className="border my-5">
+    <section className=" my-5">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-12 sm:py-20 gap-4">
         <span>
           <h2 className="font-semibold text-2xl sm:text-3xl">

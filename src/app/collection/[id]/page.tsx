@@ -2,6 +2,43 @@ import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import CartButton from "@/src/components/Buttons/CartButton";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { id } = await params;
+  const product = await getSingleProduct(id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found | The Atelier",
+    };
+  }
+
+  return {
+    title: `${product.product_name} | The Atelier`,
+    description: product.description.slice(0, 160), // ডেসক্রিপশন ১৬০ ক্যারেক্টারের মধ্যে রাখা ভালো
+    openGraph: {
+      title: product.product_name,
+      description: product.description,
+      images: [
+        {
+          url: product.image,
+          alt: product.product_name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.product_name,
+      description: product.description,
+      images: [product.image],
+    },
+  };
+}
 
 // প্রোডাক্ট টাইপ ডিফাইন করা (টাইপ সেফটির জন্য)
 interface Product {

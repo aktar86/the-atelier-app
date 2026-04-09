@@ -71,6 +71,7 @@ const CollectionClient = ({ products }: CollectionClientProps) => {
               <button
                 type="button"
                 key={index}
+                suppressHydrationWarning={true}
                 className="px-3 py-1 bg-gray-100 text-[13px] tracking-widest uppercase hover:bg-black hover:text-white dark:bg-white dark:text-black transition-colors"
               >
                 {mat}

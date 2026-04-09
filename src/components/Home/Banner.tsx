@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { poppins } from "@/src/app/layout";
 import Image from "next/image";
 import Link from "next/link";
 
 const HomeBanner = () => {
   return (
-    <section className="mt-25 border px-4 lg:px-0">
+    <section className="mt-20  px-4 lg:px-0">
       <div className="flex flex-col md:flex-row justi-between items-center">
         {/* content */}
         <div className="flex-1 space-y-3">
@@ -42,7 +41,7 @@ const HomeBanner = () => {
               />
             </div>
             {/* পেছনের বক্স (Box 2) */}
-            <div className="h-full w-full bg-amber-200 z-10 absolute top-10 left-10">
+            <div className="h-full w-full bg-gray-300 z-10 absolute top-10 left-10">
               box 2 box 2 is
             </div>
           </div>

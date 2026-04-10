@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-const getProducts = async () => {
+export const getProducts = async () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
   // Get cookies from the current request

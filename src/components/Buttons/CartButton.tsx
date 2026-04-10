@@ -41,7 +41,7 @@ const CartButton = ({ productId }: CartButtonProps) => {
     >
       {loading ? (
         <FiLoader className="animate-spin w-5 h-5" />
-      ) : (
+      ) : 
         <FiShoppingCart className="w-5 h-5" />
       )}
       <span>{loading ? "Adding..." : "Add to Cart"}</span>

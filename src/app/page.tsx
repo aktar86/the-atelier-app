@@ -17,6 +17,7 @@ import { cookies } from "next/headers";
 import ProductCard from "../components/Home/Product";
 import Link from "next/link";
 import OurHeritage from "../components/Home/OurHeritage";
+import FeatureHeri from "../components/UI/FeatureHeri";
 
 const getProducts = async () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
@@ -64,6 +65,8 @@ export default async function Home() {
 
       {/* our heritage */}
       <OurHeritage></OurHeritage>
+
+      <FeatureHeri />
     </div>
   );
 }

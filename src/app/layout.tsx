@@ -96,7 +96,7 @@ export default function RootLayout({
           <NextThemeProvider>
             <div className="w-full">
               <Navbar></Navbar>
-              <main className="w-full px-4 md:px-0 lg:px-20 mt-30 ">
+              <main className="w-full  px-4 md:px-0 lg:px-20 mt-30 ">
                 {children}
               </main>
               <Footer></Footer>

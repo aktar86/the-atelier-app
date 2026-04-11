@@ -10,6 +10,13 @@ const nextConfig = {
         // pathname: "/my-bucket/**",
         // search: "",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        // port: "",
+        // pathname: "/my-bucket/**",
+        // search: "",
+      },
     ],
   },
 };

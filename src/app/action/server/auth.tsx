@@ -67,8 +67,6 @@ export const loginUser = async (payload: LoginPayload) => {
   }
 };
 
-
-
 // if (isMatched) {
 //       // ৪. পাসওয়ার্ড ফিল্ডটি বাদ দিয়ে বাকি ডাটা পাঠানো (Security Best Practice)
 //       const { password: userHash, ...userWithoutPassword } = user;

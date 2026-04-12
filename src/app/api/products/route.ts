@@ -1,20 +1,21 @@
-import { authOptions } from "@/src/lib/authOptions";
+// import { authOptions } from "@/src/lib/authOptions";
+// import { getServerSession } from "next-auth";
 import { collection, dbConnect } from "@/src/lib/dbConnect";
-import { getServerSession } from "next-auth";
+
 import { NextResponse } from "next/server";
 
 const productCollections = dbConnect(collection.PRODUCTS);
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
+    // const session = await getServerSession(authOptions);
 
-    if (!session?.user) {
-      return NextResponse.json(
-        { message: "Unauthorized access" },
-        { status: 401 },
-      );
-    }
+    // if (!session?.user) {
+    //   return NextResponse.json(
+    //     { message: "Unauthorized access" },
+    //     { status: 401 },
+    //   );
+    // }
 
     const products = await (await productCollections).find().toArray();
 
@@ -25,7 +26,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      user: session.user,
+      // user: session.user,
       data: formattedProducts,
     });
   } catch (error) {

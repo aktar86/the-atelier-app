@@ -58,6 +58,7 @@ const OurHeritage = () => {
 
             <button
               type="button"
+              suppressHydrationWarning={true}
               className="w-full sm:w-auto px-10 py-3 border border-gray-200 bg-secondary hover:bg-primary hover:text-white transition"
             >
               The Heritage Story

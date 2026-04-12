@@ -79,7 +79,7 @@ const Footer = () => {
                 className="  bg-transparent outline-0"
                 required
               />
-              <button>
+              <button suppressHydrationWarning={true}>
                 <FaArrowRightLong />
               </button>
             </form>

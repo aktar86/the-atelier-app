@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation"; // রাউটিং এর জন্য
+import { Suspense } from "react";
 
 type LoginFormValues = {
   email: string;
@@ -49,61 +50,63 @@ const LoginPage = () => {
           Login
         </h2>
 
-        <form
-          onSubmit={handleSubmit(handleLogin)}
-          className="space-y-4 dark:text-white"
-        >
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <input
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email address",
-                },
-              })}
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message as string}
-              </p>
-            )}
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
-            <input
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Minimum 6 characters",
-                },
-              })}
-              type="password"
-              placeholder="Enter your password"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
-            />
-            {errors.password && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.password.message as string}
-              </p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition font-semibold"
+        <Suspense fallback={<p>Loading...</p>}>
+          <form
+            onSubmit={handleSubmit(handleLogin)}
+            className="space-y-4 dark:text-white"
           >
-            Login
-          </button>
-        </form>
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Email</label>
+              <input
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email.message as string}
+                </p>
+              )}
+            </div>
+
+            {/* Password */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Password</label>
+              <input
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Minimum 6 characters",
+                  },
+                })}
+                type="password"
+                placeholder="Enter your password"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.password.message as string}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition font-semibold"
+            >
+              Login
+            </button>
+          </form>
+        </Suspense>
 
         <div className="flex justify-center items-center w-full gap-5 mt-5">
           <hr className="border border-gray-300 dark:border-gray-600 grow" />

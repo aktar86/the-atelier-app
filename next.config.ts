@@ -17,6 +17,13 @@ const nextConfig = {
         // pathname: "/my-bucket/**",
         // search: "",
       },
+      {
+        protocol: "https",
+        hostname: "www.svgrepo.com",
+        // port: "",
+        // pathname: "/my-bucket/**",
+        // search: "",
+      },
     ],
   },
 };

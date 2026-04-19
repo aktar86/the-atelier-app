@@ -54,18 +54,29 @@ interface Product {
 }
 
 // ডাটা ফেচিং ফাংশন
+// ডাটা ফেচিং ফাংশন
 const getSingleProduct = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-      cache: "no-store", // ডাটা সবসময় আপডেট রাখার জন্য
+    // এনভায়রনমেন্ট ভেরিয়েবল থেকে বেজ ইউআরএল নেওয়া, না থাকলে লোকালহোস্ট ব্যবহার করা
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+    const res = await fetch(`${baseUrl}/api/products/${id}`, {
+      cache: "no-store", // প্রোডাকশনে লেটেস্ট ডাটা নিশ্চিত করার জন্য
     });
 
-    if (!res.ok) return null;
+    // রেসপন্স চেক করা
+    if (!res.ok) {
+      console.error(`Failed to fetch product: ${res.status}`);
+      return null;
+    }
 
     const result = await res.json();
-    return result.product; // আপনার এপিআই 'product' কি-তে ডাটা পাঠাচ্ছে
+
+    // আপনার এপিআই রেসপন্স অনুযায়ী 'product' কি-টি রিটার্ন করা
+    return result.product;
   } catch (error) {
-    console.error("Fetch error:", error);
+    // কোনো নেটওয়ার্ক বা সার্ভার এরর হলে কনসোলে লগ দেখাবে
+    console.error("Fetch error details:", error);
     return null;
   }
 };

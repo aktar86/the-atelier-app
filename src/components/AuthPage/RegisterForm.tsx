@@ -27,6 +27,9 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  // const searchParams = useSearchParams();
+  // const redirect = searchParams.get("redirect");
+
   const onSubmit = async (data: FormData) => {
     console.log("Register Data:", data);
 
